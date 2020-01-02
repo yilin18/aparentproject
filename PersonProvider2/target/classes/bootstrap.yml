@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: PersonProvider2
+  cloud:
+    config:
+      profile: prod
+      label: master
+      uri: http://localhost:7001
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka,http://localhost:9999/eureka

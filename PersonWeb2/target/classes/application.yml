@@ -1,0 +1,34 @@
+server:
+  port: 9002
+spring:
+  thymeleaf:
+    cache: false
+  application:
+    name: PersonWeb2
+  #开启Spring Cloud的重试功能
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka,http://localhost:9999/eureka
+PersonProvider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+    ConnectionTimeOut: 500
+    ReadTimeout: 6000
+    OkToRetryOnAllOperations: true
+    MaxAutoRetriesNextServer: 1
+    MaxAutoRetries: 5
+
+##如果接口的调用时间超过6秒 才会触发熔断机制的方法 否则正常执行
+##为了避免因为熔断时间果断 重试机制失效
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 9000

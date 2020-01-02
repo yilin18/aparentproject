@@ -1,0 +1,13 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: eurekaServer
+eureka:
+  client:
+    register-with-eureka: true #注册到其他注册中心
+    fetch-registry: true #其他的注册中心拉取服务器信息,两项默认都是true
+    service-url:
+      defaultZone: http://localhost:8888/eureka
+  instance:
+    prefer-ip-address: true

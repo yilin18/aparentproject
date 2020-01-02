@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/yilin18/springcloud_config_server.git
+#          password: 3.14159syl
+#          username: 964498287@qq.com
+          search-paths: offcn/config-repo
+server:
+  port: 7002
+#公开库不用账号密码
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka,http://localhost:9999/eureka
